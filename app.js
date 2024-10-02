@@ -3,7 +3,7 @@ const express = require('express');
 const app = express();
 
 // Define a port to listen on
-const PORT = 3000;
+const PORT = 8080;
 
 // Define a static data response
 const staticData = {
