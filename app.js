@@ -1,23 +1,29 @@
-// Importing express
+// server.js
 const express = require('express');
+const dotenv = require('dotenv');
+const mongoose = require('mongoose');
+
+// Load config
+dotenv.config({ path: './config/.env' });
+
 const app = express();
 
-// Define a port to listen on
-const PORT = 8080;
+// Connect to MongoDB
+mongoose.connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+})
+.then(() => console.log('MongoDB connected...'))
+.catch(err => console.log('MongoDB connection error:', err));
 
-// Define a static data response
-const staticData = {
-  name: "Tanuja Pathania",
-  age: 30,
-  occupation: "Software Developer"
-};
+// Body parser middleware
+app.use(express.json());
 
-// Create an API route that sends static data
-app.get('/api/static', (req, res) => {
-  res.json(staticData);
-});
+// Routes
+app.use('/api/auth', require('./routes/auth'));
 
-// Start the server
+// Start server
+const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+    console.log(`Server running on port ${PORT}`);
 });
