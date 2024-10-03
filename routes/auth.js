@@ -5,8 +5,8 @@ const { check, validationResult } = require('express-validator');
 const User = require('../models/User');
 const router = express.Router();
 const dotenv = require('dotenv');
+dotenv.config({ path: './config/.env' });
 
-dotenv.config({ path: './config/config.env' });
 
 router.post('/register', [
   check('email', 'Please include a valid email').isEmail(),
