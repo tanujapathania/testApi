@@ -11,14 +11,13 @@
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
-    "test": "jest"
+    "start": "node app.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "devDependencies": {
-    "jest": "^29.7.0",
     "nodemon": "^3.1.7"
   }
 }
